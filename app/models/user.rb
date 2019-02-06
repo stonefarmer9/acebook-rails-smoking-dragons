@@ -12,4 +12,8 @@ class User < ApplicationRecord
 
   validates :password, presence: true,
                        length: { minimum: 5 }
+
+  after_create do
+    Wall.create user:self
+  end
 end
