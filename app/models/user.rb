@@ -14,6 +14,6 @@ class User < ApplicationRecord
                        length: { minimum: 5 }
 
   after_create do
-    Wall.create user:self
+    Wall.create user: self
   end
 end

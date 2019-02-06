@@ -17,9 +17,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    # @wall = Wall.new
     if @user.save
       log_in @user
-      redirect_to @user
+      redirect_to user_wall_path(@user.id, @user.id)
     else
       @user.errors.full_messages.to_s
       render 'new'
