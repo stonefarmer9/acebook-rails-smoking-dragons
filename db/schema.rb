@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190201145404) do
+ActiveRecord::Schema.define(version: 20190206153227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(version: 20190201145404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "wall_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["wall_id"], name: "index_posts_on_wall_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -30,6 +32,13 @@ ActiveRecord::Schema.define(version: 20190201145404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+  end
+
+  create_table "walls", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_walls_on_user_id"
   end
 
 end
